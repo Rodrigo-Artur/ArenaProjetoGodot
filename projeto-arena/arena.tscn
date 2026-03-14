@@ -7,7 +7,6 @@
 [ext_resource type="Resource" uid="uid://ddc8jsimlc1u4" path="res://personagem_eletrico.tres" id="3_35c7g"]
 [ext_resource type="Resource" uid="uid://mnlbpfm7r71t" path="res://personagem_gelo.tres" id="4_n068f"]
 [ext_resource type="Texture2D" uid="uid://c4paj10ccm6p1" path="res://icon.svg" id="6_g8a64"]
-[ext_resource type="PackedScene" uid="uid://gpy7wrtraful" path="res://arma.tscn" id="8_yokb4"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ubfh8"]
 friction = 0.0
@@ -73,6 +72,7 @@ scale = Vector2(2, 2)
 shape = SubResource("SegmentShape2D_27ga2")
 
 [node name="Bola1" type="RigidBody2D" parent="." unique_id=654664359]
+position = Vector2(395, 145)
 physics_material_override = SubResource("PhysicsMaterial_g21bf")
 gravity_scale = 0.0
 lock_rotation = true
@@ -80,19 +80,17 @@ linear_damp_mode = 1
 script = ExtResource("1_ubfh8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bola1" unique_id=1716305927]
-position = Vector2(395, 145)
 shape = SubResource("CircleShape2D_ubfh8")
 
 [node name="Sprite2D" type="Sprite2D" parent="Bola1" unique_id=527093679]
-position = Vector2(396.50003, 137.5)
 scale = Vector2(0.39843753, 0.17968759)
 texture = ExtResource("6_g8a64")
 
 [node name="ProgressBar" type="ProgressBar" parent="Bola1" unique_id=42748500]
-offset_left = 371.0
-offset_top = 151.0
-offset_right = 421.0
-offset_bottom = 165.0
+offset_left = -19.0
+offset_top = 14.0
+offset_right = 20.0
+offset_bottom = 24.0
 theme_override_styles/background = SubResource("StyleBoxFlat_pbtuc")
 theme_override_styles/fill = SubResource("StyleBoxFlat_yokb4")
 show_percentage = false
@@ -100,7 +98,7 @@ show_percentage = false
 [node name="PinJoint2D" type="PinJoint2D" parent="Bola1" unique_id=165264180]
 
 [node name="Bola2" type="RigidBody2D" parent="." unique_id=141835891]
-position = Vector2(1, 3)
+position = Vector2(680, 148)
 physics_material_override = SubResource("PhysicsMaterial_g21bf")
 gravity_scale = 0.0
 lock_rotation = true
@@ -108,24 +106,20 @@ linear_damp_mode = 1
 script = ExtResource("2_444vf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bola2" unique_id=487432608]
-position = Vector2(680, 148)
 shape = SubResource("CircleShape2D_ubfh8")
 
 [node name="Sprite2D" type="Sprite2D" parent="Bola2" unique_id=964539503]
-position = Vector2(680, 136)
 scale = Vector2(0.2695318, 0.2109375)
 texture = ExtResource("6_g8a64")
 
 [node name="ProgressBar" type="ProgressBar" parent="Bola2" unique_id=808080332]
-offset_left = 655.0
-offset_top = 153.0
-offset_right = 705.0
-offset_bottom = 167.0
+offset_left = -17.0
+offset_top = 14.0
+offset_right = 17.0
+offset_bottom = 25.0
 theme_override_styles/background = SubResource("StyleBoxFlat_pbtuc")
 theme_override_styles/fill = SubResource("StyleBoxFlat_yokb4")
 show_percentage = false
 
 [node name="PinJoint2D" type="PinJoint2D" parent="Bola2" unique_id=781717364]
-
-[node name="Arma" parent="." unique_id=90724715 instance=ExtResource("8_yokb4")]
-position = Vector2(25, 3)
+position = Vector2(0, 9)

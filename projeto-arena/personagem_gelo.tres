@@ -2,10 +2,12 @@
 
 [ext_resource type="Script" uid="uid://d2wlpj7dt6r1s" path="res://status_personagem.gd" id="1_sby6f"]
 [ext_resource type="PackedScene" uid="uid://gpy7wrtraful" path="res://arma.tscn" id="1_whtms"]
+[ext_resource type="PackedScene" uid="uid://o7b251kpwsck" path="res://particula_impacto.tscn" id="2_vd0xv"]
 
 [resource]
 script = ExtResource("1_sby6f")
 nome = "Gelado"
 cor_do_personagem = Color(0, 0.5686275, 1, 1)
 cena_arma = ExtResource("1_whtms")
+cena_particula = ExtResource("2_vd0xv")
 metadata/_custom_type_script = "uid://d2wlpj7dt6r1s"

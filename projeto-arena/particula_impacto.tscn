@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://o7b251kpwsck"]
+
+[ext_resource type="Script" uid="uid://ca3yo54ifpwji" path="res://particula_impacto.gd" id="1_xbq3u"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tcme7"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 150.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 98, 0)
+scale_min = 2.0
+scale_max = 4.0
+
+[node name="ParticulaImpacto" type="GPUParticles2D" unique_id=457907671]
+emitting = false
+amount = 20
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_tcme7")
+script = ExtResource("1_xbq3u")

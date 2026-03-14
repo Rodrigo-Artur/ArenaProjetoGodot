@@ -1,4 +1,6 @@
 extends RigidBody2D
+# Variável para guardarmos a referência da arma instanciada
+var minha_arma_instanciada: Node
 
 var velocidade_constante = 500.0
 var meu_status: StatusPersonagem
@@ -25,20 +27,25 @@ func receber_personagem(novo_status: StatusPersonagem):
 	self.modulate = meu_status.cor_do_personagem
 	
 	if meu_status.cena_arma != null:
-		var minha_arma = meu_status.cena_arma.instantiate()
+		# Guardamos a arma gerada na nossa nova variável
+		minha_arma_instanciada = meu_status.cena_arma.instantiate()
 		
-		# CORREÇÃO AQUI: Tiramos o call_deferred e usamos add_child direto!
-		# Isso garante que a arma entra no jogo neste exato milissegundo.
-		get_parent().add_child(minha_arma)
+		get_parent().add_child(minha_arma_instanciada)
 		
-		minha_arma.global_position = self.global_position
-		self.add_collision_exception_with(minha_arma)
+		minha_arma_instanciada.global_position = self.global_position
+		self.add_collision_exception_with(minha_arma_instanciada)
 		
-		# Agora o get_path() vai funcionar perfeitamente, pois a arma já está no jogo.
 		junta.node_a = self.get_path()
-		junta.node_b = minha_arma.get_path()
+		junta.node_b = minha_arma_instanciada.get_path()
 		
-		minha_arma.modulate = meu_status.cor_do_personagem
+		minha_arma_instanciada.modulate = meu_status.cor_do_personagem
+		
+		# --- NOVO: Passamos o dano do cartão para a arma real! ---
+		minha_arma_instanciada.dano_da_arma = meu_status.dano_da_arma
+		
+		# --- NOVAS LINHAS AQUI ---
+		minha_arma_instanciada.cena_particula = meu_status.cena_particula
+		minha_arma_instanciada.cor_do_efeito = meu_status.cor_do_personagem
 
 	var angulo_aleatorio = randf_range(0.0, TAU)
 	var impulso = Vector2(cos(angulo_aleatorio), sin(angulo_aleatorio)) * velocidade_constante
@@ -62,7 +69,8 @@ func _integrate_forces(state):
 
 func _on_body_entered(body: Node):
 	if body.has_method("aplicar_dano"):
-		body.aplicar_dano(10)
+		# Reduzimos o dano base de quando as bolas batem cabeça com cabeça
+		body.aplicar_dano(5.0)
 
 func aplicar_dano(valor: float):
 	var rolagem = randf_range(0.0, 100.0)
@@ -86,4 +94,9 @@ func aplicar_dano(valor: float):
 		
 		if hp_atual <= 0:
 			print("--- 💀 " + meu_status.nome + " FOI DESTRUÍDO! ---")
+			
+			# NOVO: Antes da bola sumir, ela "desliga" a própria arma
+			if minha_arma_instanciada != null:
+				minha_arma_instanciada.dano_da_arma = 0.0
+				
 			queue_free()

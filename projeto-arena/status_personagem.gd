@@ -16,4 +16,10 @@ class_name StatusPersonagem
 @export var chance_bloqueio: float = 20.0 # 20% de chance padrão
 
 # Usamos PackedScene para podermos arrastar um arquivo .tscn inteiro para cá!
-@export var cena_arma: PackedScene
+# Usamos PackedScene para podermos arrastar um arquivo .tscn inteiro para cá!
+@export var cena_arma: PackedScene 
+
+# NOVO: Dano específico da arma deste personagem
+@export var dano_da_arma: float = 15.0
+
+@export var cena_particula: PackedScene
