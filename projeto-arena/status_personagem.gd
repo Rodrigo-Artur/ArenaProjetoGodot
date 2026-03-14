@@ -10,3 +10,7 @@ class_name StatusPersonagem
 # Deixamos o espaço preparado para as habilidades (podemos detalhar isto mais à frente)
 @export var nome_habilidade_ativa: String = "Nenhuma"
 @export var nome_habilidade_passiva: String = "Nenhuma"
+
+# --- NOVOS STATUS DE DEFESA (%) ---
+@export var chance_esquiva: float = 15.0 # 15% de chance padrão
+@export var chance_bloqueio: float = 20.0 # 20% de chance padrão

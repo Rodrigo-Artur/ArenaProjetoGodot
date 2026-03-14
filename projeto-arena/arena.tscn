@@ -33,6 +33,14 @@ bounce = 1.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ubfh8"]
 radius = 33.06055
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbtuc"]
+bg_color = Color(0.44705883, 0, 0, 1)
+corner_detail = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yokb4"]
+bg_color = Color(0.6, 1, 0, 1)
+corner_detail = 4
+
 [node name="Arena" type="Node2D" unique_id=252557345]
 position = Vector2(50, 19)
 script = ExtResource("1_pbtuc")
@@ -66,6 +74,7 @@ shape = SubResource("SegmentShape2D_27ga2")
 [node name="Bola1" type="RigidBody2D" parent="." unique_id=654664359]
 physics_material_override = SubResource("PhysicsMaterial_g21bf")
 gravity_scale = 0.0
+lock_rotation = true
 linear_damp_mode = 1
 script = ExtResource("1_ubfh8")
 
@@ -74,11 +83,23 @@ position = Vector2(395, 145)
 shape = SubResource("CircleShape2D_ubfh8")
 
 [node name="Sprite2D" type="Sprite2D" parent="Bola1" unique_id=527093679]
+position = Vector2(396.50003, 137.5)
+scale = Vector2(0.39843753, 0.17968759)
 texture = ExtResource("6_g8a64")
+
+[node name="ProgressBar" type="ProgressBar" parent="Bola1" unique_id=42748500]
+offset_left = 371.0
+offset_top = 151.0
+offset_right = 421.0
+offset_bottom = 165.0
+theme_override_styles/background = SubResource("StyleBoxFlat_pbtuc")
+theme_override_styles/fill = SubResource("StyleBoxFlat_yokb4")
+show_percentage = false
 
 [node name="Bola2" type="RigidBody2D" parent="." unique_id=141835891]
 physics_material_override = SubResource("PhysicsMaterial_g21bf")
 gravity_scale = 0.0
+lock_rotation = true
 linear_damp_mode = 1
 script = ExtResource("2_444vf")
 
@@ -87,4 +108,15 @@ position = Vector2(680, 148)
 shape = SubResource("CircleShape2D_ubfh8")
 
 [node name="Sprite2D" type="Sprite2D" parent="Bola2" unique_id=964539503]
+position = Vector2(680, 136)
+scale = Vector2(0.2695318, 0.2109375)
 texture = ExtResource("6_g8a64")
+
+[node name="ProgressBar" type="ProgressBar" parent="Bola2" unique_id=808080332]
+offset_left = 655.0
+offset_top = 153.0
+offset_right = 705.0
+offset_bottom = 167.0
+theme_override_styles/background = SubResource("StyleBoxFlat_pbtuc")
+theme_override_styles/fill = SubResource("StyleBoxFlat_yokb4")
+show_percentage = false
