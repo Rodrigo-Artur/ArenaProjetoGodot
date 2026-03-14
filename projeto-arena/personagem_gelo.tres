@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="StatusPersonagem" format=3 uid="uid://mnlbpfm7r71t"]
+
+[ext_resource type="Script" uid="uid://d2wlpj7dt6r1s" path="res://status_personagem.gd" id="1_sby6f"]
+
+[resource]
+script = ExtResource("1_sby6f")
+nome = "Gelado"
+cor_do_personagem = Color(0, 0.5686275, 1, 1)
+metadata/_custom_type_script = "uid://d2wlpj7dt6r1s"

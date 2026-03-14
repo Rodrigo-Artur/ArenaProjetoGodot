@@ -1,5 +1,17 @@
 [gd_scene format=3 uid="uid://6857f7xl6xjv"]
 
+[ext_resource type="Script" uid="uid://dw42um3oo5efe" path="res://arena.gd" id="1_pbtuc"]
+[ext_resource type="Script" uid="uid://digya8tcty8fe" path="res://rigid_body_2d.gd" id="1_ubfh8"]
+[ext_resource type="Script" uid="uid://bgnylabluhowo" path="res://bola_2.gd" id="2_444vf"]
+[ext_resource type="Script" uid="uid://d2wlpj7dt6r1s" path="res://status_personagem.gd" id="2_yokb4"]
+[ext_resource type="Resource" uid="uid://ddc8jsimlc1u4" path="res://personagem_eletrico.tres" id="3_35c7g"]
+[ext_resource type="Resource" uid="uid://mnlbpfm7r71t" path="res://personagem_gelo.tres" id="4_n068f"]
+[ext_resource type="Texture2D" uid="uid://c4paj10ccm6p1" path="res://icon.svg" id="6_g8a64"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ubfh8"]
+friction = 0.0
+bounce = 1.0
+
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_g21bf"]
 b = Vector2(0, 128)
 
@@ -14,14 +26,21 @@ b = Vector2(0, 73)
 a = Vector2(0, -2)
 b = Vector2(0.25001526, 138)
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_g21bf"]
+friction = 0.0
+bounce = 1.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_ubfh8"]
 radius = 33.06055
 
 [node name="Arena" type="Node2D" unique_id=252557345]
 position = Vector2(50, 19)
+script = ExtResource("1_pbtuc")
+todos_personagens = Array[ExtResource("2_yokb4")]([ExtResource("3_35c7g"), ExtResource("4_n068f")])
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=896705538]
 scale = Vector2(2, 2)
+physics_material_override = SubResource("PhysicsMaterial_ubfh8")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=46353802]
 position = Vector2(422, 33.5)
@@ -44,8 +63,28 @@ rotation = 1.5707964
 scale = Vector2(2, 2)
 shape = SubResource("SegmentShape2D_27ga2")
 
-[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=654664359]
+[node name="Bola1" type="RigidBody2D" parent="." unique_id=654664359]
+physics_material_override = SubResource("PhysicsMaterial_g21bf")
+gravity_scale = 0.0
+linear_damp_mode = 1
+script = ExtResource("1_ubfh8")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=1716305927]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bola1" unique_id=1716305927]
 position = Vector2(395, 145)
 shape = SubResource("CircleShape2D_ubfh8")
+
+[node name="Sprite2D" type="Sprite2D" parent="Bola1" unique_id=527093679]
+texture = ExtResource("6_g8a64")
+
+[node name="Bola2" type="RigidBody2D" parent="." unique_id=141835891]
+physics_material_override = SubResource("PhysicsMaterial_g21bf")
+gravity_scale = 0.0
+linear_damp_mode = 1
+script = ExtResource("2_444vf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bola2" unique_id=487432608]
+position = Vector2(680, 148)
+shape = SubResource("CircleShape2D_ubfh8")
+
+[node name="Sprite2D" type="Sprite2D" parent="Bola2" unique_id=964539503]
+texture = ExtResource("6_g8a64")
