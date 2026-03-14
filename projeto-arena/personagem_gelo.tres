@@ -1,9 +1,11 @@
 [gd_resource type="Resource" script_class="StatusPersonagem" format=3 uid="uid://mnlbpfm7r71t"]
 
 [ext_resource type="Script" uid="uid://d2wlpj7dt6r1s" path="res://status_personagem.gd" id="1_sby6f"]
+[ext_resource type="PackedScene" uid="uid://gpy7wrtraful" path="res://arma.tscn" id="1_whtms"]
 
 [resource]
 script = ExtResource("1_sby6f")
 nome = "Gelado"
 cor_do_personagem = Color(0, 0.5686275, 1, 1)
+cena_arma = ExtResource("1_whtms")
 metadata/_custom_type_script = "uid://d2wlpj7dt6r1s"

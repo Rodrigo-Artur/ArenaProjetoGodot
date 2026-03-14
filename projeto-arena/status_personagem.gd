@@ -14,3 +14,6 @@ class_name StatusPersonagem
 # --- NOVOS STATUS DE DEFESA (%) ---
 @export var chance_esquiva: float = 15.0 # 15% de chance padrão
 @export var chance_bloqueio: float = 20.0 # 20% de chance padrão
+
+# Usamos PackedScene para podermos arrastar um arquivo .tscn inteiro para cá!
+@export var cena_arma: PackedScene

@@ -8,6 +8,7 @@ var hp_atual: float
 var tempo_restante_boost: float = 0.0
 
 @onready var barra_hp = $ProgressBar
+@onready var junta = $PinJoint2D
 
 func _ready():
 	contact_monitor = true
@@ -22,16 +23,25 @@ func receber_personagem(novo_status: StatusPersonagem):
 	barra_hp.max_value = hp_atual
 	barra_hp.value = hp_atual
 	self.modulate = meu_status.cor_do_personagem
-	# --- NOVA LÓGICA DE DIREÇÃO ALEATÓRIA ---
-	# TAU é uma constante matemática do Godot que equivale a 2 * PI (uma volta completa de 360º)
-	# Sorteamos um ângulo qualquer dentro dessa volta.
+	
+	if meu_status.cena_arma != null:
+		var minha_arma = meu_status.cena_arma.instantiate()
+		
+		# CORREÇÃO AQUI: Tiramos o call_deferred e usamos add_child direto!
+		# Isso garante que a arma entra no jogo neste exato milissegundo.
+		get_parent().add_child(minha_arma)
+		
+		minha_arma.global_position = self.global_position
+		self.add_collision_exception_with(minha_arma)
+		
+		# Agora o get_path() vai funcionar perfeitamente, pois a arma já está no jogo.
+		junta.node_a = self.get_path()
+		junta.node_b = minha_arma.get_path()
+		
+		minha_arma.modulate = meu_status.cor_do_personagem
+
 	var angulo_aleatorio = randf_range(0.0, TAU)
-	
-	# Usamos cosseno(x) e seno(y) para converter esse ângulo numa direção (Vector2)
-	# Depois, multiplicamos pela velocidade para dar a força do empurrão.
 	var impulso = Vector2(cos(angulo_aleatorio), sin(angulo_aleatorio)) * velocidade_constante
-	
-	# Aplicamos o empurrão aleatório!
 	apply_central_impulse(impulso)
 
 # --- NOVA FUNÇÃO: O Relógio do Jogo ---
@@ -59,7 +69,7 @@ func aplicar_dano(valor: float):
 	
 	if rolagem <= meu_status.chance_esquiva:
 		# 1. NÃO ACUMULATIVO: Em vez de somar (+=), nós definimos exatamente a Base + 50
-		velocidade_constante = meu_status.velocidade_base + 150.0 
+		velocidade_constante = meu_status.velocidade_base + 75.0 
 		
 		# 2. TEMPORÁRIO: Reiniciamos o cronômetro para 2 segundos. Se ele esquivar 
 		# enquanto já estiver com boost, o cronômetro apenas volta para 2s.

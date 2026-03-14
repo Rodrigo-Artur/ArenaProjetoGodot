@@ -1,9 +1,11 @@
 [gd_resource type="Resource" script_class="StatusPersonagem" format=3 uid="uid://ddc8jsimlc1u4"]
 
+[ext_resource type="PackedScene" uid="uid://gpy7wrtraful" path="res://arma.tscn" id="1_8nh2h"]
 [ext_resource type="Script" uid="uid://d2wlpj7dt6r1s" path="res://status_personagem.gd" id="1_sst3g"]
 
 [resource]
 script = ExtResource("1_sst3g")
 nome = "Lâmina Elétrica"
 cor_do_personagem = Color(0.9999998, 0.86268944, 0.5156797, 1)
+cena_arma = ExtResource("1_8nh2h")
 metadata/_custom_type_script = "uid://d2wlpj7dt6r1s"

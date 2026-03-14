@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://gpy7wrtraful"]
+
+[ext_resource type="Texture2D" uid="uid://c4paj10ccm6p1" path="res://icon.svg" id="1_vp40w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uya3a"]
+
+[node name="Arma" type="RigidBody2D" unique_id=90724715]
+gravity_scale = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1187921496]
+position = Vector2(3, 0.49999952)
+scale = Vector2(0.14062501, 0.1328125)
+texture = ExtResource("1_vp40w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1881396386]
+position = Vector2(3, -1.9073486e-06)
+shape = SubResource("RectangleShape2D_uya3a")
